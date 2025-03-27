@@ -1,72 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario con fondo borroso</title>
-  <style>
-    /* Efecto de desenfoque cuando el formulario está abierto */
-    body.formsapp-open {
-      filter: blur(5px);
-      overflow: hidden; /* Evita el scroll en el fondo */
-    }
-
-    /* Estilo del botón de cierre (X) */
-    #close-form-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #fff;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 9999;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    #close-form-btn:hover {
-      background: #f0f0f0;
-    }
-  </style>
-</head>
-<body>
-
-<!-- Contenedor del formulario -->
-<div id="formsapp-container">
-  <button id="close-form-btn">×</button>
-  <script src="https://forms.app/static/embed.js" type="text/javascript" async defer onload="loadForm()"></script>
+<div id="formsapp-container" style="position: relative;">
+  <button id="close-form-btn" style="position: absolute; top: 10px; right: 10px; background: #fff; border: none; font-size: 20px; cursor: pointer; z-index: 1000; padding: 5px 10px; border-radius: 50%;">×</button>
+  <script src="https://forms.app/static/embed.js" type="text/javascript" async defer onload="new formsapp('67df2358611a06abc3cbf101', 'slider', {'overlay':'rgba(45,45,45,0.5)','width':'767px','height':'100vh','align':'left','autoOpen':{'action':'onpageload'}}, 'https://96vxnn73.forms.app');"></script>
 </div>
 
 <script>
-  // Función para cargar el formulario y aplicar el efecto borroso
-  function loadForm() {
-    document.body.classList.add("formsapp-open"); // Aplica el blur al fondo
-    new formsapp(
-      '67df2358611a06abc3cbf101',
-      'slider',
-      {
-        overlay: 'rgba(45,45,45,0.5)',
-        width: '767px',
-        height: '100vh',
-        align: 'left',
-        autoOpen: { action: 'onpageload' }
-      },
-      'https://96vxnn73.forms.app'
-    );
-  }
-
-  // Cerrar el formulario y regresar a la página anterior
   document.getElementById('close-form-btn').addEventListener('click', function() {
-    document.body.classList.remove("formsapp-open"); // Quita el blur
-    window.history.back(); // Regresa a la página anterior (vendeygana.net/user)
+    if (window.location.href !== 'https://www.vendeygana.net/user/') {
+      window.location.href = 'https://www.vendeygana.net/user/';
+    } else {
+      window.history.back(); // Si ya está en la página, regresa atrás
+    }
   });
 </script>
-
-</body>
-</html>
