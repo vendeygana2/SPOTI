@@ -3,14 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventana Modal Pantalla Completa</title>
+    <title>Elige tu aplicación de música favorita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://img.lagaceta.com.ar/fotos/notas/2024/08/20/600x400_app-para-escuchar-musica-cuesta-menos-1000-al-mes-busca-desplazar-spotiy-youtube-music-1048154-132627.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+            background-color: #121212;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin: 0 0 30px 0;
+            font-size: clamp(20px, 5vw, 28px);
+            width: 100%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            padding: 0 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 1/1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 800px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
-<body style="margin: 0; height: 100vh; width: 100vw; overflow: hidden; font-family: Arial, sans-serif;">
-    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000;">
-        <button onclick="window.location.href='https://www.vendeygana.net/user/'"
-            style="position: absolute; top: 10px; right: 10px; background-color: #d9534f; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-weight: bold; font-size: 20px; cursor: pointer; line-height: 40px;">X</button>
-        <iframe src="https://vendeygana.forms.app/formulario-sin-titulo-3"
-            style="border: none; width: 100%; height: 90%;" title="Formulario"></iframe>
+<body>
+    <h1>Elige la aplicación que más te guste</h1>
+    
+    <div class="container">
+        <!-- Deezer -->
+        <button class="btn" onclick="window.location.href='https://vendeygana.forms.app/dezeermusic'">
+            <img src="https://cdn.worldvectorlogo.com/logos/deezer-new-logo.svg" alt="Deezer">
+        </button>
+        
+        <!-- YouTube Premium -->
+        <button class="btn" onclick="window.location.href='https://vendeygana2.github.io/PREMIUM/'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/YouTube_Premium_logo.svg/1200px-YouTube_Premium_logo.svg.png" alt="YouTube Premium">
+        </button>
+        
+        <!-- Spotify -->
+        <button class="btn" onclick="window.location.href='https://vendeygana2.github.io/SPOTI/'">
+            <img src="https://cdn.worldvectorlogo.com/logos/spotify-logo.svg" alt="Spotify">
+        </button>
+        
+        <!-- Apple Music -->
+        <button class="btn" onclick="window.location.href='https://vendeygana.forms.app/applemusic'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apple_Music_logo.svg/1024px-Apple_Music_logo.svg.png" alt="Apple Music">
+        </button>
     </div>
 </body>
 </html>
