@@ -3,296 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elige tu aplicación de música favorita</title>
+    <title>Aplicaciones de Música</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-image: url('https://img.lagaceta.com.ar/fotos/notas/2024/08/20/600x400_app-para-escuchar-musica-cuesta-menos-1000-al-mes-busca-desplazar-spotiy-youtube-music-1048154-132627.webp');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 20px;
-            background-color: #121212;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .button-container {
             position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            transition: transform 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: scale(1.2);
-        }
-
-        h1 {
-            color: white;
-            text-align: center;
-            margin: 0 0 30px 0;
-            font-size: clamp(20px, 5vw, 28px);
-            width: 100%;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            font-weight: 600;
-            padding: 0 20px;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .btn {
-            background-color: rgba(255, 255, 255, 0.95);
-            border: none;
-            border-radius: 12px;
-            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 400px;
+            height: 300px;
+        }
+        
+        .redirect-button {
+            border: none;
+            background: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            aspect-ratio: 1/1;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: visible;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            padding: 0;
+            position: relative;
+            z-index: 20;
             width: 100%;
+            height: 100%;
         }
-
-        .btn:hover {
+        
+        .redirect-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
         }
-
-        .btn img {
-            width: 80%;
-            height: auto;
-            object-fit: contain;
+        
+        .button-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 15px;
         }
-
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
+        
+        .logos-container {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
         }
-
-        .modal-content {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-            height: 90vh;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
+        
+        .button-container:hover .logos-container {
+            opacity: 1;
         }
-
-        .modal-close {
+        
+        .logo {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            background: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            z-index: 1001;
-            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.3, 1);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transform: translateY(0) scale(0.8);
+        }
+        
+        /* Posiciones iniciales - DETRÁS del botón (abajo) */
+        .logo-1 { 
+            bottom: -50px;
+            left: 50px;
+            background: #FF0000;
+        }
+        
+        .logo-2 { 
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: #1DB954;
+        }
+        
+        .logo-3 { 
+            bottom: -50px;
+            right: 50px;
+            background: #FF0090;
+        }
+        
+        .logo-4 { 
+            bottom: -50px;
+            left: 35%;
+            transform: scale(0.8);
+            background: #FA243C;
+        }
+        
+        /* Estados finales - SUBEN como globos */
+        .button-container:hover .logo-1 {
+            opacity: 1;
+            transform: translateY(-180px) translateX(-25px) scale(1);
+            transition-delay: 0.1s;
+        }
+        
+        .button-container:hover .logo-2 {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-220px) scale(1);
+            transition-delay: 0.3s;
+        }
+        
+        .button-container:hover .logo-3 {
+            opacity: 1;
+            transform: translateY(-200px) translateX(25px) scale(1);
+            transition-delay: 0.2s;
+        }
+        
+        .button-container:hover .logo-4 {
+            opacity: 1;
+            transform: translateY(-160px) translateX(-15px) scale(1);
+            transition-delay: 0.4s;
         }
 
-        .modal-close:hover {
-            background: rgba(0, 0, 0, 0.8);
-            transform: scale(1.1);
+        /* Animaciones de flotación */
+        .button-container:hover .logo-1 {
+            animation: floatLogo1 4s ease-in-out infinite;
+        }
+        
+        .button-container:hover .logo-2 {
+            animation: floatLogo2 3.5s ease-in-out infinite;
+        }
+        
+        .button-container:hover .logo-3 {
+            animation: floatLogo3 4.2s ease-in-out infinite;
+        }
+        
+        .button-container:hover .logo-4 {
+            animation: floatLogo4 3.8s ease-in-out infinite;
         }
 
-        .modal-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        @keyframes floatLogo1 {
+            0%, 100% { 
+                transform: translateY(-180px) translateX(-25px) scale(1); 
+            }
+            50% { 
+                transform: translateY(-200px) translateX(-30px) scale(1.05); 
+            }
         }
-
-        @media (min-width: 600px) {
-            .container {
-                grid-template-columns: repeat(4, 1fr);
-                max-width: 800px;
+        
+        @keyframes floatLogo2 {
+            0%, 100% { 
+                transform: translateX(-50%) translateY(-220px) scale(1); 
+            }
+            50% { 
+                transform: translateX(-48%) translateY(-240px) scale(1.05); 
+            }
+        }
+        
+        @keyframes floatLogo3 {
+            0%, 100% { 
+                transform: translateY(-200px) translateX(25px) scale(1); 
+            }
+            50% { 
+                transform: translateY(-220px) translateX(30px) scale(1.05); 
+            }
+        }
+        
+        @keyframes floatLogo4 {
+            0%, 100% { 
+                transform: translateY(-160px) translateX(-15px) scale(1); 
+            }
+            50% { 
+                transform: translateY(-180px) translateX(-20px) scale(1.05); 
             }
         }
 
-        @media (max-width: 400px) {
-            .container {
-                gap: 15px;
-            }
+        /* Contenido de los logos */
+        .logo-content {
+            text-align: center;
+            line-height: 1.2;
+            padding: 5px;
+        }
+        
+        .logo-icon {
+            font-size: 20px;
+            margin-bottom: 3px;
+            display: block;
+        }
+        
+        .logo-text {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Efecto de cuerda para los globos */
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            width: 2px;
+            height: 25px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease 0.3s;
+        }
+        
+        .button-container:hover .logo::after {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <a href="https://www.vendeygana.net/user/" class="close-btn">×</a>
-    
-    <h1>Elige la aplicación que más te guste</h1>
-    
-    <div class="container">
-        <!-- Deezer -->
-        <button class="btn" id="deezerBtn">
-            <img src="https://cdn.worldvectorlogo.com/logos/deezer-new-logo.svg" alt="Deezer">
+    <div class="button-container">
+        <button class="redirect-button" onclick="redirectToLink()">
+            <img src="https://i.pinimg.com/1200x/0e/8e/ec/0e8eec3ac2675edf1a399044aa8b737f.jpg" 
+                 alt="Aplicaciones de Música" 
+                 class="button-image">
         </button>
         
-        <!-- YouTube Premium -->
-        <button class="btn" id="youtubeBtn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/YouTube_Premium_logo.svg/1200px-YouTube_Premium_logo.svg.png" alt="YouTube Premium">
-        </button>
-        
-        <!-- Spotify -->
-        <button class="btn" id="spotifyBtn">
-            <img src="https://cdn.worldvectorlogo.com/logos/spotify-logo.svg" alt="Spotify">
-        </button>
-        
-        <!-- Apple Music -->
-        <button class="btn" id="appleBtn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apple_Music_logo.svg/1024px-Apple_Music_logo.svg.png" alt="Apple Music">
-        </button>
-    </div>
-
-    <!-- Modal para Deezer -->
-    <div id="deezerModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeDeezerModal">×</span>
-            <iframe src="https://96vxnn73.forms.app/dezeermusic" class="modal-iframe" frameborder="0"></iframe>
-        </div>
-    </div>
-
-    <!-- Modal para YouTube Premium -->
-    <div id="youtubeModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeYoutubeModal">×</span>
-            <iframe src="https://vendeygana2.github.io/PREMIUM/" class="modal-iframe" frameborder="0"></iframe>
-        </div>
-    </div>
-
-    <!-- Modal para Spotify -->
-    <div id="spotifyModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeSpotifyModal">×</span>
-            <iframe src="https://vendeygana.forms.app/compraspoti" class="modal-iframe" frameborder="0"></iframe>
-        </div>
-    </div>
-
-    <!-- Modal para Apple Music -->
-    <div id="appleModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeAppleModal">×</span>
-            <iframe src="https://96vxnn73.forms.app/applemusic" class="modal-iframe" frameborder="0"></iframe>
+        <div class="logos-container">
+            <div class="logo logo-1">
+                <div class="logo-content">
+                    <span class="logo-icon">▶️</span>
+                    <span class="logo-text">YOUTUBE PREMIUM</span>
+                </div>
+            </div>
+            <div class="logo logo-2">
+                <div class="logo-content">
+                    <span class="logo-icon">🎵</span>
+                    <span class="logo-text">SPOTIFY</span>
+                </div>
+            </div>
+            <div class="logo logo-3">
+                <div class="logo-content">
+                    <span class="logo-icon">🔊</span>
+                    <span class="logo-text">DEEZER</span>
+                </div>
+            </div>
+            <div class="logo logo-4">
+                <div class="logo-content">
+                    <span class="logo-icon">🍎</span>
+                    <span class="logo-text">APPLE MUSIC</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Obtener elementos del DOM
-        const deezerBtn = document.getElementById("deezerBtn");
-        const youtubeBtn = document.getElementById("youtubeBtn");
-        const spotifyBtn = document.getElementById("spotifyBtn");
-        const appleBtn = document.getElementById("appleBtn");
+        function redirectToLink() {
+            window.location.href = "https://cuentasvendeygana.company.site/products/aplicaciones-musica";
+        }
 
-        const deezerModal = document.getElementById("deezerModal");
-        const youtubeModal = document.getElementById("youtubeModal");
-        const spotifyModal = document.getElementById("spotifyModal");
-        const appleModal = document.getElementById("appleModal");
+        // Soporte para dispositivos táctiles
+        const button = document.querySelector('.redirect-button');
+        const logosContainer = document.querySelector('.logos-container');
+        let isHovering = false;
 
-        const closeDeezerModal = document.getElementById("closeDeezerModal");
-        const closeYoutubeModal = document.getElementById("closeYoutubeModal");
-        const closeSpotifyModal = document.getElementById("closeSpotifyModal");
-        const closeAppleModal = document.getElementById("closeAppleModal");
-
-        // Event listeners para abrir modales
-        deezerBtn.addEventListener("click", () => {
-            deezerModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
+        button.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            isHovering = !isHovering;
+            logosContainer.style.opacity = isHovering ? '1' : '0';
         });
-
-        youtubeBtn.addEventListener("click", () => {
-            youtubeModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
+        
+        button.addEventListener('mouseenter', function() {
+            isHovering = true;
+            logosContainer.style.opacity = '1';
         });
-
-        spotifyBtn.addEventListener("click", () => {
-            spotifyModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
+        
+        button.addEventListener('mouseleave', function() {
+            isHovering = false;
+            logosContainer.style.opacity = '0';
         });
-
-        appleBtn.addEventListener("click", () => {
-            appleModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
-        });
-
-        // Event listeners para cerrar modales
-        closeDeezerModal.addEventListener("click", () => {
-            deezerModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
-
-        closeYoutubeModal.addEventListener("click", () => {
-            youtubeModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
-
-        closeSpotifyModal.addEventListener("click", () => {
-            spotifyModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
-
-        closeAppleModal.addEventListener("click", () => {
-            appleModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
-
-        // Cerrar modal al hacer clic fuera del contenido
-        window.addEventListener("click", (event) => {
-            if (event.target === deezerModal) {
-                deezerModal.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-            if (event.target === youtubeModal) {
-                youtubeModal.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-            if (event.target === spotifyModal) {
-                spotifyModal.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-            if (event.target === appleModal) {
-                appleModal.style.display = "none";
-                document.body.style.overflow = "auto";
+        
+        document.addEventListener('touchstart', function(e) {
+            if (!button.contains(e.target)) {
+                isHovering = false;
+                logosContainer.style.opacity = '0';
             }
         });
     </script>
