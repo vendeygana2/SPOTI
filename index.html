@@ -19,12 +19,12 @@
             min-height: 100vh;
             background-color: #ed7318;
             padding: 20px;
-            overflow: hidden;
+            overflow-x: hidden; /* Cambiado de hidden a hidden-x para permitir scroll vertical */
         }
         
         .container {
             text-align: center;
-            max-width: 800px;
+            max-width: 90%; /* Cambiado de 800px fijo a porcentaje */
             width: 100%;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -32,18 +32,19 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 1;
+            margin: auto; /* Asegura centrado */
         }
         
         h1 {
             color: #333;
             margin-bottom: 20px;
-            font-size: 2.2rem;
+            font-size: clamp(1.5rem, 4vw, 2.2rem); /* Tamaño adaptable */
         }
         
         p {
             color: #555;
             margin-bottom: 30px;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Tamaño adaptable */
             line-height: 1.6;
         }
         
@@ -95,6 +96,7 @@
         .info-box h3 {
             color: #ed7318;
             margin-bottom: 10px;
+            font-size: clamp(1.1rem, 3vw, 1.3rem); /* Tamaño adaptable */
         }
         
         .typewriter-container {
@@ -106,6 +108,7 @@
             white-space: pre-wrap;
             word-wrap: break-word;
             line-height: 1.6;
+            font-size: clamp(0.85rem, 2.5vw, 1rem); /* Tamaño adaptable */
         }
         
         .typewriter-cursor {
@@ -155,14 +158,7 @@
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            p {
-                font-size: 1rem;
+                max-width: 95%; /* Más ancho en pantallas pequeñas */
             }
             
             .button-image {
@@ -173,14 +169,31 @@
         @media (max-width: 480px) {
             .container {
                 padding: 15px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
+                max-width: 98%; /* Casi todo el ancho en móviles muy pequeños */
             }
             
             .button-image {
                 max-width: 250px;
+            }
+            
+            .typewriter-container {
+                min-height: 100px; /* Más espacio para el texto */
+            }
+        }
+        
+        /* Para pantallas muy pequeñas (menos de 350px) */
+        @media (max-width: 350px) {
+            body {
+                padding: 10px; /* Menos padding en pantallas muy pequeñas */
+            }
+            
+            .container {
+                padding: 10px;
+                border-radius: 15px; /* Bordes ligeramente más pequeños */
+            }
+            
+            .button-image {
+                max-width: 200px;
             }
         }
     </style>
